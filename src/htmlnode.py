@@ -2,14 +2,8 @@ class HTMLNode:
     def __init__(self, tag=None, value=None, children=None, props=None):
         self.tag = tag
         self.value = value
-        if children is None:
-            self.children = []
-        else:
-            self.children = children
-        if props is None:
-            self.props = {}
-        else:
-            self.props = props
+        self.children = children if children else []
+        self.props = props if props else {}
 
     def to_html(self):
         raise NotImplementedError

@@ -9,5 +9,5 @@ class TestLeafNode(unittest.TestCase):
         self.assertEqual(node.to_html(), "<p>Hello, world!</p>")
 
     def test_leaf_to_html_href(self):
-        node = LeafNode("a", "link", None, {"href": "https://www.google.com"})
+        node = LeafNode("a", "link", {"href": "https://www.google.com"})
         self.assertEqual(node.to_html(), '<a href="https://www.google.com">link</a>')
