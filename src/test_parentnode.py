@@ -1,9 +1,10 @@
 import unittest
 
 from parentnode import ParentNode
-from leaflnode import LeafNode
+from leafnode import LeafNode
 
 
+# TODO implement more extensive testing of parentnode
 class TestParentNode(unittest.TestCase):
     def test_to_html_with_children(self):
         child_node = LeafNode("span", "child")
