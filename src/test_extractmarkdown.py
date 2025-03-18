@@ -14,12 +14,19 @@ class TestImages(unittest.TestCase):
 class TestLinks(unittest.TestCase):
     def test_extract_markdown_links(self):
         matches = extract_markdown_links(
-            "This is text with a ![rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)"
+            "This is text with a [google link](https://www.google.com/) and a [duckduckgo link](https://duckduckgo.com/)"
         )
         self.assertListEqual(
             [
-                ("rick roll", "https://i.imgur.com/aKaOqIh.gif"),
-                ("obi wan", "https://i.imgur.com/fJRm4Vk.jpeg"),
+                ("google link", "https://www.google.com/"),
+                ("duckduckgo link", "https://duckduckgo.com/"),
             ],
+            matches,
+        )
+
+    def test_no_links(self):
+        matches = extract_markdown_links("This is a text without any links")
+        self.assertListEqual(
+            [],
             matches,
         )
