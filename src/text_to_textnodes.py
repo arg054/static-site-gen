@@ -1,4 +1,4 @@
-from textnode import TextNode, TextType
+from text_node import TextNode, TextType
 from splitnodes import split_nodes_delimiter, split_nodes_image, split_nodes_link
 
 

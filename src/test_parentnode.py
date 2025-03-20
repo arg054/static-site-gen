@@ -1,7 +1,7 @@
 import unittest
 
-from parentnode import ParentNode
-from leafnode import LeafNode
+from parent_node import ParentNode
+from leaf_node import LeafNode
 
 
 # TODO implement more extensive testing of parentnode
