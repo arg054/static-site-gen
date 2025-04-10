@@ -1,8 +1,9 @@
-from copy_content import copy
+from extract import extract_title
 
 
 def main():
-    copy()
+    line_test = "This is a line\n# This is a header!\nThis is another line".split("\n")
+    print(extract_title(line_test))
 
 
 main()
