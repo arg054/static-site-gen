@@ -1,4 +1,4 @@
-from extract import extract_title
+from generate import extract_title
 
 
 def main():
