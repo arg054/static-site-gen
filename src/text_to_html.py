@@ -38,8 +38,7 @@ def text_node_to_html_block(block_type, block_node):
             code_node = LeafNode("code", code_content)
             return HTMLNode("pre", None, [code_node])
         case BlockType.QUOTE:
-            # TODO rethink this. doesnt replace > if the line is empty
-            content = block_node.replace("> ", "")
+            content = block_node.replace("> ", "").replace(">", "")
             children = block_to_leaf_nodes(content)
             return HTMLNode("blockquote", None, children)
         case BlockType.UNORDERED_LIST:
