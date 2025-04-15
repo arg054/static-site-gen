@@ -1,9 +1,10 @@
-from generate import extract_title
+from generate import generate_page
+from copy_content import copy
 
 
 def main():
-    line_test = "This is a line\n# This is a header!\nThis is another line"
-    print(extract_title(line_test))
+    copy()
+    generate_page("./content/index.md", "./template.html", "./public")
 
 
 main()
