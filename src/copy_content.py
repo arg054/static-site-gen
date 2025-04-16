@@ -24,9 +24,7 @@ def clear_dir(target):
     os.mkdir(target)
 
 
-def copy():
-    source = "./static"
-    target = "./public"
+def copy(source, target):
     files = os.listdir(source)
 
     clear_dir(target)

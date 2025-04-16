@@ -1,5 +1,4 @@
 import os
-import shutil
 from markdown_to_html_node import markdown_to_html_node
 
 
@@ -27,11 +26,13 @@ def read_file(file_path):
     return file.read()
 
 
-def write_file(dest_path, content):
+def write_file(dest_path, content, basepath):
     output_content = (
         content[2]
         .replace("{{ Title }}", content[0])
         .replace("{{ Content }}", content[1])
+        .replace('href="/', f'href="{basepath}')
+        .replace('src="/', f'src="{basepath}')
     )
 
     output_file = open(f"{dest_path}/index.html", "w")
@@ -39,7 +40,8 @@ def write_file(dest_path, content):
     output_file.close()
 
 
-def generate_pages(files, from_path, template_path, dest_path):
+def generate_pages(files, from_path, template_path, dest_path, basepath):
+
     if not files:
         return
 
@@ -53,8 +55,11 @@ def generate_pages(files, from_path, template_path, dest_path):
         template = read_file(template_path)
         title = extract_title(markdown)
         markdown = markdown_to_html_node(markdown).to_html()
+
         write_file(
-            f"{dest_path}/{file}".replace("/index.md", ""), (title, markdown, template)
+            f"{dest_path}/{file}".replace("/index.md", ""),
+            (title, markdown, template),
+            basepath,
         )
 
     if os.path.isdir(f"{from_path}/{file}"):
@@ -62,7 +67,7 @@ def generate_pages(files, from_path, template_path, dest_path):
         for f in os.listdir(f"{from_path}/{file}"):
             files.append(f"{file}/{f}")
 
-    generate_pages(files, from_path, template_path, dest_path)
+    generate_pages(files, from_path, template_path, dest_path, basepath)
 
 
 def get_dir(path):
